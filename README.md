@@ -62,6 +62,10 @@ python3 main.py
 
 This will launch the Python program. After a few seconds, you will see the e-Ink display update with your chosen cryptos.
 
+## Known Issues
+
+The program rounds the price of each crypto currency to the nearest 2 decimal places. Ultimately this can be turned off but it might cause issues where digits overflow off of the screen. A fix will be found.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
