@@ -138,7 +138,7 @@ def main():
             logging.debug(crypto_price_list)
             image = image.rotate(180)
             epd.displayPartial(epd.getbuffer(image))   
-            time.sleep(refresh_interval) 
+            time.sleep(int(refresh_interval)) 
         except KeyboardInterrupt:
             logging.info("Caught Ctrl + C. Exiting...")
             epd.init(epd.FULL_UPDATE)

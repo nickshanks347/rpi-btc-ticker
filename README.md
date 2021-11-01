@@ -48,6 +48,7 @@ Included in the repository is a `config.cfg` file. It has this format:
 [main]
 coin: bitcoin,litecoin,ethereum
 fiat: gbp
+refresh_interval: 1
 ```
 `coin` specifies which three cryptocurrencies you would like displayed. The order entered in the config file will be the order they appear on the display. Please ensure to keep the same format, and only include commas (no spaces) between each coin.
 
@@ -56,11 +57,61 @@ fiat: gbp
 
 `fiat` specifies which fiat currency you would like the program to display. Example: if you have `fiat` set to `gbp` in the config file, the program will display what 1 BTC is equal to in £.
 
-```bash
+`refresh_interval` is the time between refreshes of the coin prices and any changes to the config file. The unit is seconds, so for 10 minutes you'd write 600. 
+
+The config file is read dynamically (it is not loaded into memory). If you want to change the coins/fiat shown, or the refresh interval then you can do so and it'll be re-read at the next refresh time without having to restart the program.
+
+---
+To launch within your terminal window type: 
+```
 python3 main.py
 ```
 
+To launch the service type: 
+```
+sudo service crypto-ticker start
+```
+
 This will launch the Python program. After a few seconds, you will see the e-Ink display update with your chosen cryptos.
+
+## Starting automatically at boot (`systemd integration`)
+
+We'll utilise `systemd` to automatically start our service at boot. 
+
+First, type `sudo nano /etc/systemd/system/crypto-ticker.service` and paste the service definition below:
+```bash
+ [Unit]
+ Description=crypto-ticker
+ After=network.target
+
+ [Service]
+ ExecStart=/usr/bin/python3 -u main.py
+ WorkingDirectory=/home/pi/rpi-btc-ticker
+ StandardOutput=inherit
+ StandardError=inherit
+ KillSignal=SIGINT
+ Restart=always
+ User=pi
+ Restart=on-failure
+
+ [Install]
+ WantedBy=multi-user.target
+ ```
+Please note the `ExecStart` and `WorkingDirectory`, change these as needed if you cloned to a different directory.
+
+Now reload systemctl daemon (this is only needed if we're interacting with systemctl, which we're not, but it's good to run anyway):
+```bash
+sudo systemctl daemon-reload
+```
+
+Now the service is set up, but it's not running. You can run: `sudo service crypto-ticker <option>`, replacing `<option>` with either `start`, `stop`, `restart`, `disable`, `enable` and `status`.
+
+To start the program at boot, run `sudo service crypto-ticker enable`. Run the command with `disable` to disable at boot. 
+
+If you're having issues then run `sudo service crypto-ticker restart`.
+
+The `status` option is quite useful as it shows the services status and the last few log entries. 
+
 
 ## Known Issues
 
