@@ -40,10 +40,15 @@ pip3 install -r requirements.txt
 pip3 install ./e-Paper/RaspberryPi_JetsonNano/python/
 ```
 
+Write the config file (from example config):
+```bash
+cp config_example.cfg config.cfg
+```
+
 ## Usage
 
 
-Included in the repository is a `config.cfg` file. It has this format:
+Included in the repository is a `config_example.cfg` file. It has this format:
 ```
 [main]
 coin: bitcoin,litecoin,ethereum
