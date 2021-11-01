@@ -29,11 +29,12 @@ def read_config():
     config.read('config.cfg')
     fiat_currency = config['main']['fiat']
     crypto_list = config['main']['coin'].split(',')
-    return crypto_list, fiat_currency
+    refresh_interval = config['main']['refresh_interval']
+    return crypto_list, fiat_currency, refresh_interval
 
 def fetch_prices():
     cg = CoinGeckoAPI()
-    crypto_list_config, fiat_currency = read_config()
+    crypto_list_config, fiat_currency, refresh_interval = read_config()
     crypto_list = []
     crypto_price_list = []
     crypto_price_change_24h = []
@@ -53,7 +54,7 @@ def fetch_prices():
         crypto_price_list.append(coin_current_price)
         crypto_price_change_24h.append(coin_price_change_24h)
         crypto_percentage_24h.append(coin_percentage_24h)
-    return crypto_list, crypto_price_list, crypto_price_change_24h, crypto_percentage_24h, fiat_currency
+    return crypto_list, crypto_price_list, crypto_price_change_24h, crypto_percentage_24h, fiat_currency, refresh_interval
 
 def set_font_size(font_size):
     logging.debug(f"Loading font with font size {font_size}...")
@@ -123,7 +124,7 @@ def main():
             epd.displayPartBaseImage(epd.getbuffer(image))
             epd.init(epd.PART_UPDATE)
 
-            crypto_list, crypto_price_list, crypto_price_change_24h, crypto_percentage_24h, fiat_currency = fetch_prices()
+            crypto_list, crypto_price_list, crypto_price_change_24h, crypto_percentage_24h, fiat_currency, refresh_interval = fetch_prices()
             fiat = CurrencySymbols.get_symbol(fiat_currency.upper())
             draw.rectangle((0, 0, 250, 250), fill = 255)
             # Limits are 140, 95
@@ -137,7 +138,7 @@ def main():
             logging.debug(crypto_price_list)
             image = image.rotate(180)
             epd.displayPartial(epd.getbuffer(image))   
-            time.sleep(1) 
+            time.sleep(refresh_interval) 
         except KeyboardInterrupt:
             logging.info("Caught Ctrl + C. Exiting...")
             epd.init(epd.FULL_UPDATE)
