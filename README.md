@@ -104,7 +104,7 @@ First, type `sudo nano /etc/systemd/system/crypto-ticker.service` and paste the 
  ```
 Please note the `ExecStart` and `WorkingDirectory`, change these as needed if you cloned to a different directory.
 
-Now reload systemctl daemon (this is only needed if we're interacting with systemctl, which we're not, but it's good to run anyway):
+Now reload systemctl daemon:
 ```bash
 sudo systemctl daemon-reload
 ```
