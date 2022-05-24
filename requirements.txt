@@ -25,7 +25,7 @@ python-dateutil==2.8.2
 pyxdg==0.27
 PyYAML==6.0
 requests==2.21.0
-RPi.GPIO==0.7.0
+RPi.GPIO==0.7.1
 SecretStorage==2.3.1
 six==1.16.0
 spidev==3.4
