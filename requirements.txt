@@ -18,7 +18,7 @@ olefile==0.46
 Pillow==9.0.1
 pycoingecko==2.2.0
 pycrypto==2.6.1
-PyGObject==3.30.4
+PyGObject==3.42.1
 pyparsing==3.0.3
 python-apt==1.8.4.3
 python-dateutil==2.8.2
