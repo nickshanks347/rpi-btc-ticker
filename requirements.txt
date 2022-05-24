@@ -30,4 +30,4 @@ SecretStorage==2.3.1
 six==1.16.0
 spidev==3.4
 ssh-import-id==5.11
-urllib3==1.24.1
+urllib3==1.26.5
