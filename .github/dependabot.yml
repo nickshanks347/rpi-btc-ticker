@@ -9,3 +9,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+      
+- name: Dependabot Auto Merge
+  uses: ahmadnassri/action-dependabot-auto-merge@v2.3.1
