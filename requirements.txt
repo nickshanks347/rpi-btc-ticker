@@ -5,7 +5,7 @@ colorzero==2.0
 cryptography==3.3.2
 currency-symbols==2.0.2
 cycler==0.11.0
-entrypoints==0.3
+entrypoints==0.4
 gpiozero==1.5.1
 idna==3.3
 keyring==17.1.1
@@ -15,11 +15,11 @@ matplotlib==3.5.2
 nh-currency==1.0.1
 numpy==1.22.4
 olefile==0.46
-Pillow==9.0.1
+Pillow==9.1.1
 pycoingecko==2.2.0
 pycrypto==2.6.1
 PyGObject==3.42.1
-pyparsing==3.0.3
+pyparsing==3.0.9
 python-apt==1.8.4.3
 python-dateutil==2.8.2
 pyxdg==0.27
@@ -28,6 +28,6 @@ requests==2.21.0
 RPi.GPIO==0.7.1
 SecretStorage==2.3.1
 six==1.16.0
-spidev==3.4
+spidev==3.5
 ssh-import-id==5.11
 urllib3==1.26.9
