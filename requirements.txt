@@ -1,5 +1,5 @@
 asn1crypto==1.5.1
-certifi==2022.5.18.1
+certifi==2022.6.15
 chardet==4.0.0
 colorzero==2.0
 cryptography==37.0.2
